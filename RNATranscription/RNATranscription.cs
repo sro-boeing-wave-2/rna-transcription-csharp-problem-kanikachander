@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace RNATranscriptionModule
 {
@@ -6,27 +8,18 @@ namespace RNATranscriptionModule
     {
         public static string ToRna(string nucleotide)
         {
+            Dictionary<char, char> myDictionary = new Dictionary<char, char>();
+            myDictionary.Add('G', 'C');
+            myDictionary.Add('C', 'G');
+            myDictionary.Add('T', 'A');
+            myDictionary.Add('A', 'U');
             string rna = "";
-            foreach(char c in nucleotide)
+
+            foreach (char c in nucleotide)
             {
-                string str = "";
-                switch (c)
-                {
-                    case 'G': str = "C";
-                        break;
-                    case 'C': str = "G";
-                        break;
-                    case 'T': str = "A";
-                        break;
-                    case 'A': str = "U";
-                        break;
-                }
-                rna += str;
-                
+                rna += myDictionary[c];
             }
             return rna;
-            throw new NotImplementedException("You need to implement this function.");
-            
         }
     }
 }
